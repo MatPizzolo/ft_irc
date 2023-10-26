@@ -1,7 +1,7 @@
 #include <libraries.hpp>
 #include "Bot.hpp"
 
-std::string sendMessageToChatbot(std::string userMessage, bool isFirstMsg) {
+std::string sendMessageToChatbot(std::string userMessage, const std::string API_KEY, bool isFirstMsg) {
 	CURL* curl = curl_easy_init();
 	if (!curl) {
 		std::cerr << "Failed to initialize CURL." << std::endl;
@@ -9,7 +9,7 @@ std::string sendMessageToChatbot(std::string userMessage, bool isFirstMsg) {
 	}
 
 	struct curl_slist* headers = NULL;
-	headers = curl_slist_append(headers, ("Authorization: Bearer " + std::string(OPENAI_API_KEY)).c_str());
+	headers = curl_slist_append(headers, ("Authorization: Bearer " + std::string(API_KEY)).c_str());
 	headers = curl_slist_append(headers, "Content-Type: application/json");
 
 	std::string response_data;
@@ -94,7 +94,7 @@ void analyzeMessage(const std::string &buffer, Bot *myBot)
 				std::cout << "Username: " << username << std::endl;
 				std::cout << "Channel: " << chan << std::endl;
 				std::cout << "Message: " << cleaned_message << std::endl;
-				std::string response = sendMessageToChatbot(cleaned_message.c_str(), false);
+				std::string response = sendMessageToChatbot(cleaned_message.c_str(), myBot->getAPIKEY(), false);
 				std::cout << "response: " << response << std::endl;
 				response = extractContent(response);
 				std::string msgResponse = "PRIVMSG " + chan + " :" + std::string(username) + " " + response + IRC_ENDLINE;
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 	Bot newBot = sendConfigServer(argv);
 	if (newBot.getSocket() == -1)
 		return 2;
-	sendConfigOpenAIMessage();
+	sendConfigOpenAIMessage(newBot.getAPIKEY());
 	std::string buffer(4096, '\0');
 	while (1)
 	{

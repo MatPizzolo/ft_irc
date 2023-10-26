@@ -1,7 +1,7 @@
 #include "Bot.hpp"
 
-Bot::Bot(const std::string &server, const int &port, const std::string &channel, const std::string &nick, const std::string &user, const std::string &password)
-	: _server(server), _port(port), _channel(channel), _nick(nick), _userCmd(user), _password(password) {}
+Bot::Bot(const std::string &server, const int &port, const std::string &channel, const std::string &nick, const std::string &user, const std::string &password,  const std::string &apikey)
+	: _server(server), _port(port), _channel(channel), _nick(nick), _userCmd(user), _password(password), _apikey(apikey) {}
 
 Bot::~Bot(){}
 
@@ -43,4 +43,9 @@ const std::string Bot::getUserCmd() const
 const std::string Bot::getPassword() const
 {
 	return this->_password;
+}
+
+const std::string Bot::getAPIKEY() const
+{
+	return this->_apikey;
 }

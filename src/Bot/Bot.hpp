@@ -9,7 +9,6 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#define OPENAI_API_KEY "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"
 
 class Bot {
 	private:
@@ -19,10 +18,11 @@ class Bot {
 		std::string _nick;
 		std::string _userCmd;
 		std::string _password;
+		std::string _apikey;
 		int _sock;
 
 	public:
-		Bot(const std::string &, const int &, const std::string &, const std::string &, const std::string &, const std::string &);
+		Bot(const std::string &, const int &, const std::string &, const std::string &, const std::string &, const std::string &, const std::string &);
 		~Bot();
 
 		void setSocket(const int &);
@@ -33,12 +33,13 @@ class Bot {
 		const std::string getNick() const;
 		const std::string getUserCmd() const;
 		const std::string getPassword() const;
+		const std::string getAPIKEY() const;
 		int getSocket() const;
 
 };
 
 int checkArgs(const int &);
-void sendConfigOpenAIMessage();
+void sendConfigOpenAIMessage(const std::String apikey);
 Bot sendConfigServer(char *argv[]);
 std::string extractContent(const std::string &);
 size_t WriteCallback(void *, const size_t &, const size_t &, std::string *response_data);
@@ -46,6 +47,6 @@ std::string isJoinCommand(const std::string &, const std::string &);
 std::string responseToJoinCommand(std::string buffer);
 
 
-std::string sendMessageToChatbot(std::string userMessage, bool isFirstMsg);
+std::string sendMessageToChatbot(std::string userMessage, const std::string apikey, bool isFirstMsg);
 
 #endif

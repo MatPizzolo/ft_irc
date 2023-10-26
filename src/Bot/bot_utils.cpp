@@ -4,22 +4,22 @@ std::string firstMessageForSetup = "{"
 		"\"model\": \"gpt-3.5-turbo\","
 		"\"messages\": [{\"role\": \"system\", \"content\": \"Comportate como un bot de chat, tu nombre es Juan, tienes 20 años y te gustan los deportes\"}],"
 		"\"temperature\": 0.5,"
-		"\"max_tokens\": 256"
+		"\"max_tokens\": 150"
 "}";
 
 int checkArgs(const int &argc)
 {
-	if (argc != 3)
+	if (argc != 4)
 	{
-		std::cout << "Parameters expected: ./ircbot (server_password) (channel_to_join)" << std::endl;
+		std::cout << "Expected Parameters: ./ircbot (server_password) (channel_to_join) (API_KEY)" << std::endl;
 		return -1;
 	}
 	return 1;
 }
 
-void sendConfigOpenAIMessage()
+void sendConfigOpenAIMessage(const std::string apikey)
 {
-	std::string response = sendMessageToChatbot(firstMessageForSetup.c_str(), true);
+	std::string response = sendMessageToChatbot(firstMessageForSetup.c_str(), apikey, true);
 	response = extractContent(response);
 	std::cout << "response: " << response << std::endl;
 }
@@ -29,7 +29,7 @@ Bot sendConfigServer(char *argv[])
 	std::string channel = argv[2];
 	if (!channel.empty() && channel[0] != '#')
 		channel = "#" + channel;
-	Bot newBot("127.0.0.1", 6667, channel, "bot", "bot 0 * :bot", argv[1]);
+	Bot newBot("127.0.0.1", 6667, channel, "bot", "bot 0 * :bot", argv[1], argv[3]);
 
 	int sock = socket(AF_INET, SOCK_STREAM, 0);
 	newBot.setSocket(sock);
