@@ -1,7 +1,7 @@
 #include <libraries.hpp>
 #include "Bot.hpp"
 
-std::string sendMessageToChatbot(std::string userMessage, const std::string API_KEY, bool isFirstMsg) {
+std::string sendMessageToChatbot(std::string userMessage, std::string API_KEY, bool isFirstMsg) {
 	CURL* curl = curl_easy_init();
 	if (!curl) {
 		std::cerr << "Failed to initialize CURL." << std::endl;
@@ -9,7 +9,9 @@ std::string sendMessageToChatbot(std::string userMessage, const std::string API_
 	}
 
 	struct curl_slist* headers = NULL;
-	headers = curl_slist_append(headers, ("Authorization: Bearer " + std::string(API_KEY)).c_str());
+	API_KEY = "Authorization: Bearer " + API_KEY;
+	const char *apik = API_KEY.c_str();
+	headers = curl_slist_append(headers, (apik));
 	headers = curl_slist_append(headers, "Content-Type: application/json");
 
 	std::string response_data;
@@ -112,7 +114,9 @@ int main(int argc, char *argv[])
 	Bot newBot = sendConfigServer(argv);
 	if (newBot.getSocket() == -1)
 		return 2;
-	sendConfigOpenAIMessage(newBot.getAPIKEY());
+	std::string apikeyy = newBot.getAPIKEY();
+	std::cout << "api: " << newBot.getAPIKEY() << std::endl;
+	sendConfigOpenAIMessage(apikeyy);
 	std::string buffer(4096, '\0');
 	while (1)
 	{
