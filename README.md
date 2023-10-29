@@ -1,8 +1,8 @@
 # `Ft_Irc`
 
-This test project is intended for a deeper study of the operation of sockets and their interactions, creating an IRC server. The whole project is written in c++=98 except for needed C system functions.
-</br>
-It supports all types of clients. Proven to work with limechat, irssi, colloquy, wechat, netcat
+An IRC (Internet Relay Chat) server, developed entirely in C++98, with necessary integration of C system functions. The project aims to offer a comprehensive exploration of socket interactions within an IRC server environment.
+<br/>
+It is designed to support a diverse array of clients and has undergone rigorous testing, demonstrating compatibility with various IRC client applications such as LimeChat, Irssi, Colloquy, WeChat, and Netcat.
 
 [Subject](en.subject.pdf)
 
