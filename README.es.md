@@ -1,87 +1,88 @@
 # `Ft_Irc`
 
-An IRC (Internet Relay Chat) server, developed entirely in C++98, with necessary integration of C system functions. The project aims to offer a comprehensive exploration of socket interactions within an IRC server environment.
+Un servidor de IRC (Internet Relay Chat), desarrollado íntegramente en C++98, con la integración necesaria de funciones del sistema en C.
+El proyecto tiene como objetivo ofrecer una exploración de las interacciones de sockets dentro de un entorno de servidor de IRC.
 <br/>
-It is designed to support a diverse array of clients and has undergone rigorous testing, demonstrating compatibility with various IRC client applications such as LimeChat, Irssi, Colloquy, WeChat and Netcat.
+Está diseñado para admitir una amplia gama de clientes y ha pasado por pruebas rigurosas, demostrando su compatibilidad con varias aplicaciones cliente de IRC como LimeChat, Irssi, Colloquy, WeChat y Netcat.
 
-[Subject](en.subject.pdf)
+[Tema](es.subject.pdf)
 
-## Description
+## Descripcion
 
-IRC (Internet Relay Chat) - an application-level Protocol for exchanging messages in real-time. Designed primarily for group communication, it also allows you to 
-communicate via private messages and exchange data, including files. IRC uses the TCP transport protocol and cryptographic TLS (optional). IRC began to gain 
-particular popularity after Operation "Desert Storm" (1991), when messages from all over the world were collected in one place and broadcast on-line to IRC. 
-Due to the technical simplicity of implementation, the IRC protocol was used in the organization of botnets as a means of transmitting control commands to the 
-computers participating in the botnet from the owner.
+IRC (Internet Relay Chat) es un protocolo a nivel de aplicación para intercambiar mensajes en tiempo real. Diseñado principalmente para comunicación grupal, también permite comunicarse a través de mensajes privados e intercambiar datos, incluyendo archivos. IRC utiliza el protocolo de transporte TCP y TLS criptográfico (opcional).
+
+IRC comenzó a ganar popularidad, en particular, después de la Operación "Desert Storm" (1991), cuando mensajes de todo el mundo se recopilaban en un solo lugar y se transmitían en línea a través de IRC.
+
+Debido a la simplicidad técnica de implementación, el protocolo IRC se utilizó en la organización de botnets como un medio para transmitir comandos de control a las computadoras participantes en la botnet por parte del propietario.
 
 
-## Installation & Usage
+## Instalacion y Uso
 
-Clone this repository to your computer:
+Clona este repositorio en tu computadora:
 ```sh
 git clone https://github.com/MatPizzolo/ft_irc.git
 ```
 
-First compile and install library
+Primero, compila e instala la biblioteca:
 ```sh
 make
 ```
 
-Run
+Ejecuta:
 ```sh
 ./ircserv [port] [pass]
 ```
 
-## Implemented IRC Commands
+## Comandos IRC Implementados
 
-- `NICK`: Change your nickname.
-- `USER`: Register username, hostname, server, and real name details.
-- `PING`: Used to check if the connection is still active.
-- `PONG`: A response to a PING command.
-- `QUIT`: Disconnect from the server.
-- `JOIN`: Join a channel.
-- `PART`: Leave a channel.
-- `TOPIC`: Set or view the topic of a channel.
-- `NAMES`: List users in a channel.
-- `LIST`: List channels and their topics.
-- `KICK`: Remove a user from a channel.
-- `PRIVMSG`: Send a message to another user or channel.
-- `SAY`: Alias for PRIVMSG.
-- `NOTICE`: Send a notice to another user or channel.
-- `PASS`: Set a connection password.
-- `INVITE`: Invite a user to a channel.
-- `WHO`: List users matching a given mask.
-- `WHOIS`: Get information about a user.
-- `WHOWAS`: Get information about a user who is no longer connected.
-- `MODE`: Set channel modes or user modes.
+- `NICK`: Cambiar tu apodo.
+- `USER`: Registrar detalles de nombre de usuario, nombre de host, servidor y nombre real.
+- `PING`: Usado para verificar si la conexión sigue activa.
+- `PONG`: Respuesta a un comando PING.
+- `QUIT`: Desconectarse del servidor.
+- `JOIN`: Unirse a un canal.
+- `PART`: Abandonar un canal.
+- `TOPIC`: Establecer o ver el tema de un canal.
+- `NAMES`: Listar usuarios en un canal.
+- `LIST`: Listar canales y sus temas.
+- `KICK`: Quitar un usuario de un canal.
+- `PRIVMSG`: Enviar un mensaje a otro usuario o canal.
+- `SAY`: Alias para PRIVMSG.
+- `NOTICE`: Enviar una notificación a otro usuario o canal.
+- `PASS`: Establecer una contraseña de conexión.
+- `INVITE`: Invitar a un usuario a un canal.
+- `WHO`: Listar usuarios que coinciden con un determinado filtro.
+- `WHOIS`: Obtener información sobre un usuario.
+- `WHOWAS`: Obtener información sobre un usuario que ya no está conectado.
+- `MODE`: Establecer modos de canal o modos de usuario.
 
-## Implemented IRC Error Messages
+## Mensajes de Error IRC Implementados
 
-- `ERR_UNKNOWNCOMMAND_421`: Unknown command. 
-- `ERR_NOSUCHNICK`: No such nickname or channel. 
-- `ERR_NOSUCHCHANNEL`: No such channel. 
-- `ERR_NOCHANNELS`: There are no channels. 
-- `ERR_CANNOTSENDTOCHAN`: Cannot send to channel. 
-- `ERR_TOOMANYCHANNELS`: Exceeded maximum channel limit. 
-- `ERR_WASNOSUCHNICK`: There was no such nickname. 
-- `ERR_NORECIPIENT`: No recipient given for a command. 
-- `ERR_NOTEXTTOSEND`: No text to send. 
-- `ERR_NONICKNAMEGIVEN`: No nickname given. 
-- `ERR_NICKNAMEINUSE`: Nickname is already in use. 
-- `ERR_NOTONCHANNEL`: User is not on that channel. 
-- `ERR_USERONCHANNEL`: User is already on the channel. 
-- `ERR_CHANOPRIVSNEEDED`: Insufficient privileges (not channel operator). 
-- `ERR_PASSWDMISMATCH`: Incorrect password. 
-- `ERR_PASSWDREQUIRED`: Password is required. 
-- `ERR_YOUREBANNEDCREEP`: User is banned from the server. 
-- `ERR_BANNEDFROMCHAN`: Cannot join channel due to ban. 
-- `ERR_USERALREADYBANNED`: User is already banned. 
-- `ERR_NEEDMOREPARAMS`: Not enough parameters for a command. 
-- `ERR_ALREADYREGISTERED`: User is already registered. 
-- `ERR_ERRONEUSNICKNAME`: Erroneous nickname. 
+- `ERR_UNKNOWNCOMMAND_421`: Comando desconocido.
+- `ERR_NOSUCHNICK`: No existe ese apodo o canal.
+- `ERR_NOSUCHCHANNEL`: No existe ese canal.
+- `ERR_NOCHANNELS`: No hay canales.
+- `ERR_CANNOTSENDTOCHAN`: No se puede enviar al canal.
+- `ERR_TOOMANYCHANNELS`: Límite máximo de canales superado.
+- `ERR_WASNOSUCHNICK`: No existía ese apodo.
+- `ERR_NORECIPIENT`: No se especificó un destinatario para un comando.
+- `ERR_NOTEXTTOSEND`: No hay texto para enviar.
+- `ERR_NONICKNAMEGIVEN`: No se dio un apodo.
+- `ERR_NICKNAMEINUSE`: El apodo ya está en uso.
+- `ERR_NOTONCHANNEL`: El usuario no está en ese canal.
+- `ERR_USERONCHANNEL`: El usuario ya está en el canal.
+- `ERR_CHANOPRIVSNEEDED`: Privilegios insuficientes (no es operador de canal).
+- `ERR_PASSWDMISMATCH`: Contraseña incorrecta.
+- `ERR_PASSWDREQUIRED`: Se requiere una contraseña.
+- `ERR_YOUREBANNEDCREEP`: El usuario está vetado en el servidor.
+- `ERR_BANNEDFROMCHAN`: No se puede unir al canal debido al veto.
+- `ERR_USERALREADYBANNED`: El usuario ya está vetado.
+- `ERR_NEEDMOREPARAMS`: Parámetros insuficientes para un comando.
+- `ERR_ALREADYREGISTERED`: El usuario ya está registrado.
+- `ERR_ERRONEUSNICKNAME`: Apodo erróneo.
 
+## Uso de `.ircmoderdocs`
 
-## Usage of `.ircmoderdocs`
+El [ircmoderdocs](https://modern.ircdocs.horse/) es una guía completa para modos de servidor IRC, comandos y sus funcionalidades. Detalla minuciosamente la sintaxis de comandos y comportamientos esperados, siendo una referencia crucial tanto para usuarios como desarrolladores. Este documento es un recurso invaluable para comprender y utilizar las diversas funcionalidades proporcionadas por el servidor IRC.
 
-The [ircmoderdocs](https://modern.ircdocs.horse/) web is a comprehensive guide for IRC server modes, commands, and their functionalities. It meticulously details command syntax and expected behaviors, serving as a crucial reference for both users and developers. This document is an invaluable resource for understanding and utilizing the various functionalities provided by the IRC server.
 
