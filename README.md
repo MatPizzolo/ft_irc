@@ -1,3 +1,5 @@
+[![es](img/es.png)](README.es.md)
+
 # `Ft_Irc`
 
 An IRC (Internet Relay Chat) server, developed entirely in C++98, with necessary integration of C system functions. The project aims to offer a comprehensive exploration of socket interactions within an IRC server environment.
